@@ -1,3 +1,6 @@
+#  --- Day 1: Calorie Counting ---
+# Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
+
 def read_file_as_nested_list(file):
     with open(file) as file:
         day1_input = file.read()
