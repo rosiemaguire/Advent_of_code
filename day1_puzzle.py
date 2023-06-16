@@ -1,18 +1,26 @@
-with open('day1_input.txt','r') as file:
-    day1_input = file.read()
-a = list(day1_input.split(' '))
+def read_file_as_nested_list(file):
+    with open(file) as file:
+        day1_input = file.read()
+    calories_list = []
+    for item in list(day1_input.split(' ')):
+        calories_list.append(item.split('\n\n'))
+    nested_list = []
+    for calories in calories_list:
+        output = []
+        for calorie in calories:
+            output.append(calorie.split('\n'))
+        nested_list.extend(output)
+    return nested_list
 
-# print(a)
-calories = []
 
-for item in a:
-    calories2 = item.split('\n\n')
-    calories.append((calories2))
+def get_max_value_and_index(nested_list):
+    summed_lists = []
+    for nest in nested_list:
+        count = 0
+        for item in nest:
+            count += int(item)
+        summed_lists.append(count)
+    max_value = max(summed_lists)
+    return max_value
 
-output = []
-for item in calories:
-    calories3 = []
-    for item2 in item:
-        calories3.append(item2.split('\n'))
-    output.append(calories3)
-print(output)
+print(get_max_value_and_index(read_file_as_nested_list("day1_input.txt")))
